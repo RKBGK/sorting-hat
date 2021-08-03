@@ -43,28 +43,46 @@ const getRandomArbitrary=()=>{
 console.log (`the number is ${colnum} and  color is ${cardcol}`);
 }
 
-
+const  handleNewStudent = (event) => {
+    
+    console.log("handleButtonClick");
+    const studentHouse = getRandomArbitrary();
+    
+    const newStudent = {
+        name: "test",
+        house:studentHouse,
+        expelled:false
+      };
+    console.log(newStudent);
+    // const selectedDiv = document.querySelector("#ct");
+    // selectedDiv.innerHTML = "nona";
+  
+  };
 
 const handleStudentSubmit = (event) => {
     event.preventDefault();
+    const studentHouse = getRandomArbitrary();
     
-    // TODO: Add obj in newPie to the pies Array!
-    // TODO: Render pies with the new pie to the DOM
     const newStudent = {
-      name: document.querySelector("#name").value,
+        name: "test",
+        house:studentHouse,
+        expelled:false
+      };
+    // const newStudent = {
+    //   name: document.querySelector("#name").value,
      
-    };
   
     console.log(newStudent);
   };
 
 const SubmitFormEvents = () => {
-    const pieFormElement = document.querySelector("#addStudent");
-    pieFormElement.addEventListener("submit", handleStudentSubmit);
+    const studentFormElement = document.querySelector("#addStudent");
+    studentFormElement.addEventListener("submit", handleStudentSubmit);
   };
 
 
-  const buttonEvents = () => {
+  const buttonEvents = (event) => {
+    event.preventDefault();
     document.querySelector("#frmName").addEventListener("submit", handleButtonClick);   
     console.log("buttonevents");
     // const selectedDiv = document.querySelector("#ct");
