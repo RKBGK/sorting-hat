@@ -47,6 +47,29 @@ const getRandomArbitrary = () => {
 }
 
 
+const getcolor = (house) => {
+   
+    let cardcol = "";
+    switch (house) {
+        case "Gryffindor":
+            bcolor = "#00ffff";
+            break;
+        case "Hufflepuff":
+            bcolor = "#7fff00";
+            break;
+        case "Ravenclaw":
+            bcolor = "#ff1493";
+            break;
+        case "Slytherin":
+            bcolor = "#ffd700";
+      
+      
+    }
+    return bcolor;
+    console.log(`the  color is ${bcolor}`);
+}
+   
+
 const handleStudentSubmit = (event) => {
     event.preventDefault();
     const studentHouse = getRandomArbitrary();
@@ -68,10 +91,11 @@ const cardBuilder = (cardArray, divid) => {
     let domString = "";
 let imageloc="";
     cardArray.forEach((card, i) => {
-        // let imageloc=card.house;
-        // console.log = imageloc;
-      domString += `
-      <div class="card" style="width: 18rem;" id="notexpel">
+      const bcol = getcolor(card.house);
+      console.log(bcol);
+      //<div class="card" style="width: 18rem;" id="notexpel"; style="background-color:${bcol}">
+      domString += `      
+      <div class="card" style="width: 18rem;background-color:${bcol};" id="notexpel">
         <img src="\images\${image} class="card-img-top" alt="${card.name}">
         <div class="card-body">
           <h5 class="card-title">${card.name}</h5>
@@ -82,6 +106,7 @@ let imageloc="";
       `;
     });
     renderToDom(divid, domString);
+    console.log(domString);
 };
 
 const cardBuilderExpel = (cardArray, divid) => {
