@@ -1,4 +1,4 @@
-const students = [];
+import { students } from "./data.js";
 const studentsExpel = [];
 const renderToDom = (divId, textToPrint) => {
     const selectedDiv = document.querySelector(divId);
@@ -47,10 +47,33 @@ const getRandomArbitrary = () => {
 }
 
 
+const getcolor = (house) => {
+   let bcolor = "";
+    let cardcol = "";
+    switch (house) {
+        case "Gryffindor":
+            bcolor = "#00ffff";
+            break;
+        case "Hufflepuff":
+            bcolor = "#7fff00";
+            break;
+        case "Ravenclaw":
+            bcolor = "#ff1493";
+            break;
+        case "Slytherin":
+            bcolor = "#ffd700";
+      
+      
+    }
+    return bcolor;
+    console.log(`the  color is ${bcolor}`);
+}
+   
+
 const handleStudentSubmit = (event) => {
     event.preventDefault();
     const studentHouse = getRandomArbitrary();
-    let cardimg =  "\\images\\"+studentHouse+".gif";
+    let cardimg =  "./images/"+studentHouse+".png";
 
     const newStudent = {
         name: document.querySelector("#student").value,
@@ -61,18 +84,19 @@ const handleStudentSubmit = (event) => {
     students.push(newStudent);
     cardBuilder(students,"#studentNotExpelled");
 
-    console.log(newStudent);
+    console.log(event);
 };
 
 const cardBuilder = (cardArray, divid) => {
     let domString = "";
 let imageloc="";
     cardArray.forEach((card, i) => {
-        // let imageloc=card.house;
-        // console.log = imageloc;
-      domString += `
-      <div class="card" style="width: 18rem;" id="notexpel">
-        <img src="\images\${image} class="card-img-top" alt="${card.name}">
+      const bcol = getcolor(card.house);
+      console.log(bcol);
+
+      domString += `      
+      <div class="card" style="width: 18rem;background-color:${bcol};" id="notexpel">
+        <img src="${card.image} class="card-img-top" alt="${card.name}">
         <div class="card-body">
           <h5 class="card-title">${card.name}</h5>
           <p class="card-text">${card.house}</p>
@@ -82,17 +106,17 @@ let imageloc="";
       `;
     });
     renderToDom(divid, domString);
+    console.log(domString);
 };
 
 const cardBuilderExpel = (cardArray, divid) => {
     let domString = "";
 let imageloc="";
     cardArray.forEach((card, i) => {
-        // let imageloc=card.house;
-        // console.log = imageloc;
+
       domString += `
       <div class="card" style="width: 18rem;" id="notexpel">
-        <img src="images/nonamearmy.gif class="card-img-top" alt="${card.name}">
+        <img src="./images/nonamearmy.png" class="card-img-top" alt="${card.name}">
         <div class="card-body">
           <h5 class="card-title">${card.name}</h5>
           <p class="card-text"> Aha reveal yourself</p>
