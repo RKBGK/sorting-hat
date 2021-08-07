@@ -1,41 +1,10 @@
-import {
-    students
-} from "./data.js";
-
+import { students } from "./data.js";
 const studentsExpel = [];
-const houses = [{
-        houseN: "Gryffindor",
-        colorN: "#00ffff",
-        img: "./images/Gryffindor.png"
-    },
-    {
-        houseN: "Hufflepuff",
-        colorN: "#7fff00",
-        img: "./images/Hufflepuff.png"
-    },
-    {
-        houseN: "Ravenclaw",
-        colorN: "#ff1493",
-        img: "./images/Ravenclaw.png"
-    },
-    {
-        houseN: "Slytherin",
-        colorN: "#ffd700",
-        img: "./images/Slytherin.png"
-    }
-
-]
 const renderToDom = (divId, textToPrint) => {
     const selectedDiv = document.querySelector(divId);
     selectedDiv.innerHTML = textToPrint;
 };
 
-const randomHouse = () => {
-
-    const randomIndex = houses[Math.floor(Math.random() * houses.length)];
-    return randomIndex;
-    //return houses[Math.floor(Math.random(Object.keys(houses).length))];
-}
 const btnst = () => {
     document.querySelector("#btn-start").addEventListener("click", displaySort);
     document.querySelector("#namesort").addEventListener("submit", handleStudentSubmit);
@@ -55,36 +24,82 @@ const displaySort = () => {
     renderToDom("#namesort", sortsec)
 };
 
+console.log("the number i" + Math.floor(Math.random() * (4 - 1) + 1));
+const getRandomArbitrary = () => {
+    const colnum = Math.floor(Math.random() * (4 - 1) + 1);
+    let cardcol = "";
+    switch (colnum) {
+        case 1:
+            cardcol = "Gryffindor";
+            break;
+        case 2:
+            cardcol = "Hufflepuff";
+            break;
+        case 3:
+            cardcol = "Ravenclaw";
+            break;
+        case 4:
+            cardcol = "Slytherin";
+      
+    }
+    return cardcol;
+    console.log(`the number is ${colnum} and  color is ${cardcol}`);
+}
+
+
+const getcolor = (house) => {
+   let bcolor = "";
+    let cardcol = "";
+    switch (house) {
+        case "Gryffindor":
+            bcolor = "#00ffff";
+            break;
+        case "Hufflepuff":
+            bcolor = "#7fff00";
+            break;
+        case "Ravenclaw":
+            bcolor = "#ff1493";
+            break;
+        case "Slytherin":
+            bcolor = "#ffd700";
+      
+      
+    }
+    return bcolor;
+    console.log(`the  color is ${bcolor}`);
+}
+   
+
 const handleStudentSubmit = (event) => {
     event.preventDefault();
-    const {houseN, colorN, img} = randomHouse();
+    const studentHouse = getRandomArbitrary();
+    let cardimg =  "./images/"+studentHouse+".png";
+
     const newStudent = {
         name: document.querySelector("#student").value,
-        houseN: houseN,
-        colorN: colorN,
-        img: img,
+        house: studentHouse,
+        image: cardimg,
         expelled: 0
     };
-    console.log("newStudent");
-    console.log(newStudent);
     students.push(newStudent);
-    cardBuilder(students, "#studentNotExpelled");
+    cardBuilder(students,"#studentNotExpelled");
 
     console.log(event);
 };
 
 const cardBuilder = (cardArray, divid) => {
     let domString = "";
-    let imageloc = "";
+let imageloc="";
     cardArray.forEach((card, i) => {
-        
+      const bcol = getcolor(card.house);
+      console.log(bcol);
 
-        domString += `      
-      <div class="card" style="width: 18rem;background-color:${card.colorN};" id="notexpel">
-        <img src="${card.img}" class="card-img-top" width="30" height="200" alt="${card.name}">
+      domString += `      
+      <div class="card" style="width: 18rem;background-color:${bcol};" id="notexpel">
+        <img src="${card.image} class="card-img-top" alt="${card.name}">
         <div class="card-body">
           <h5 class="card-title">${card.name}</h5>
-          <p class="card-text">${card.houseN}</p>
+          <p class="card-text">${card.house}</p>
           <button type="button" id=${i} class="btn btn-primary">Delete</button>
         </div>
       </div>
@@ -96,10 +111,10 @@ const cardBuilder = (cardArray, divid) => {
 
 const cardBuilderExpel = (cardArray, divid) => {
     let domString = "";
-    let imageloc = "";
+let imageloc="";
     cardArray.forEach((card, i) => {
 
-        domString += `
+      domString += `
       <div class="card" style="width: 18rem;" id="notexpel">
         <img src="./images/nonamearmy.png" class="card-img-top" alt="${card.name}">
         <div class="card-body">
@@ -114,20 +129,20 @@ const cardBuilderExpel = (cardArray, divid) => {
 
 const filterStudents = (array, expelstat) => {
     return array.filter((studentObject) => student.expelled === expelstat);
-};
+  };
 const expelCard = (event) => {
     const targetId = event.target.id;
     const targetType = event.target.type;
     console.log(targetId);
-    students[targetId].expelled = 1;
+    students[targetId].expelled=1;
     console.log(students[targetId].expelled);
     studentsExpel.push(students[targetId]);
     if (targetType === "button") {
         students.splice(targetId, 1);
     }
 
-    cardBuilder(students, "#studentNotExpelled");
-    cardBuilderExpel(studentsExpel, "#expelled");
+    cardBuilder(students,"#studentNotExpelled");
+    cardBuilderExpel(studentsExpel,"#expelled");
 
     // const safeStudents = filterStudents(students,0);
     // const expelledtudents = filterStudents(students,1);
@@ -141,11 +156,11 @@ const expelCard = (event) => {
     // });
     //cardBuilder(students,"#studentNotExpelled");
     //if (targetType === "button") {
-    //   students.splice(targetId, 1);
-    //cardBuilder(students,"#studentNotExpelled");
-    // }
-};
-
+   //   students.splice(targetId, 1);
+   //cardBuilder(students,"#studentNotExpelled");
+   // }
+  };
+  
 
 btnst();
-cardBuilder(students, "#studentNotExpelled");
+cardBuilder(students,"#studentNotExpelled");

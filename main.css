@@ -1,0 +1,18 @@
+
+.flex {
+    display: flex;
+    flex-wrap: wrap;
+    width: 80%;
+    margin: auto;
+}
+
+.card {
+    margin: 8px;
+    box-shadow: 5px 5px 5px 5px #888888;
+    shape-rendering: auto;
+    flex-basis: 30%;
+    border: blue;
+    border-width: 10px;
+    
+   
+ }
