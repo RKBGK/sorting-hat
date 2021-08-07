@@ -52,6 +52,8 @@ const handleStudentSubmit = (event) => {
     console.log("newStudent");
     console.log(newStudent);
     students.push(newStudent);
+    
+
     cardBuilder(students, "#studentNotExpelled");
 
     console.log(event);
@@ -69,7 +71,7 @@ const cardBuilder = (cardArray, divid) => {
         <div class="card-body">
           <h5 class="card-title">${card.name}</h5>
           <p class="card-text">${card.houseN}</p>
-          <button type="button" id=${i} class="btn btn-primary">Delete</button>
+          <button type="button" id=${i} class="btn btn-primary">Expel</button>
         </div>
       </div>
       `;
