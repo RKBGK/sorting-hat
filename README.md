@@ -12,6 +12,10 @@ Focus on MVP. Do not spend a ton of time styling initially. Hit functionality fi
 - On Saturday, everyone will present how far they got AND their favorite piece of code that they wrote for everyone to share in the Glory!
 - MOST OF ALL HAVE FUN!!!!!
 
+
+ URL: https://sortinghats-e16.netlify.app/
+ Wrireframing link : https://www.figma.com/file/ncVsWA6pqi3TRGk9vPgNXt/Prototyping-in-Figma?node-id=105%3A395
+
 ## Instructions
 You are in charge of bringing the Hogwarts sorting hat to life! 
 
