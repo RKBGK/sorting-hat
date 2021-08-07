@@ -1,30 +1,14 @@
 import {
     students
 } from "./data.js";
+import {
+    studentsExpel
+} from "./data.js";
+import {
+    houses
+} from "./data.js";
 
-const studentsExpel = [];
-const houses = [{
-        houseN: "Gryffindor",
-        colorN: "#00ffff",
-        img: "./images/Gryffindor.png"
-    },
-    {
-        houseN: "Hufflepuff",
-        colorN: "#7fff00",
-        img: "./images/Hufflepuff.png"
-    },
-    {
-        houseN: "Ravenclaw",
-        colorN: "#ff1493",
-        img: "./images/Ravenclaw.png"
-    },
-    {
-        houseN: "Slytherin",
-        colorN: "#ffd700",
-        img: "./images/Slytherin.png"
-    }
 
-]
 const renderToDom = (divId, textToPrint) => {
     const selectedDiv = document.querySelector(divId);
     selectedDiv.innerHTML = textToPrint;
@@ -129,21 +113,6 @@ const expelCard = (event) => {
     cardBuilder(students, "#studentNotExpelled");
     cardBuilderExpel(studentsExpel, "#expelled");
 
-    // const safeStudents = filterStudents(students,0);
-    // const expelledtudents = filterStudents(students,1);
-    // cardBuilder(safeStudents,"#studentNotExpelled");
-    // cardBuilder(expelledtudents,"#expelled");
-    // safeStudents.forEach((student,i) => {
-    //     console.log(student)
-    // });
-    // expelledtudents.forEach((student,i) => {
-    //     console.log(student)
-    // });
-    //cardBuilder(students,"#studentNotExpelled");
-    //if (targetType === "button") {
-    //   students.splice(targetId, 1);
-    //cardBuilder(students,"#studentNotExpelled");
-    // }
 };
 
 
