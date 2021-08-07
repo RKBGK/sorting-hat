@@ -1,3 +1,5 @@
+# URL: https://sortinghats-e16.netlify.app/
+# Wrireframing link : https://www.figma.com/file/ncVsWA6pqi3TRGk9vPgNXt/Prototyping-in-Figma?node-id=0%3A68
 # Sorting Hat
 
 ## Goals
